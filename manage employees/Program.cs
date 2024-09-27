@@ -23,7 +23,7 @@ namespace manage_employees
             listPlayer.Add(new Player("Voi", "12/2/2004", 8, "CF"));
             listPlayer.Add(new Player("Kien", "2/1/2000", 3, "GK"));
             listPlayer.Add(new Player("Tho", "10/9/2007", 7, "WB"));
-            listPlayer.Add(new Player("Ho", "4/5/2002", 4, "CM"));
+            listPlayer.Add(new Player("Hong", "4/5/2002", 4, "CM"));
 
             listTeam.Add(new Team("1A", "Dog", "HCM"));
             listTeam.Add(new Team("2A", "Cat", "HN"));
