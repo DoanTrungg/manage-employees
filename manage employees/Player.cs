@@ -31,9 +31,47 @@ namespace manage_employees
             _team = new Team();
         }
 
+        
+        public void EnterInforPlayer()
+        {
+            Console.Write("enter full name : ");
+            string inputName = Console.ReadLine();
+            bool isName = ValidInput.ValidStringName(inputName);
+            if(isName) _fullName = inputName;
+
+            Console.Write("enter date of birthday (m/d/y) : ");
+            string inputDate = Console.ReadLine();
+            bool isDate = ValidInput.ValidStringDate(inputDate);
+            if(isDate) _dateOfBirth = inputDate;
+
+            Console.Write("enter squad number : ");
+            bool isNumber = Int32.TryParse(Console.ReadLine(), out int result);
+            ValidInput.ValidNumber(isNumber);
+            if(isNumber) _squadNumber = result;
+
+            Console.Write("enter position (”GK”, “CB” , “WB” , ”CM” , “CF”) : ");
+            string inputPosition = Console.ReadLine();
+            bool isPosition = ValidInput.ValidPosition(inputPosition);
+            if(isPosition) _position = inputPosition;
+        }
+        public static Player GetPlayer(List<Player> listPlayer)
+        {
+            ListItems.PrintList(listPlayer);
+            Console.Write("Player Index : ");
+            string inputAdd = Console.ReadLine();
+            if (ValidInput.IsNumberChoice(inputAdd, listPlayer) == -1)
+            {
+                Console.WriteLine("* incorrect input *");
+                return null;
+            }
+            int choiceAdd = Int32.Parse(inputAdd);
+            Console.WriteLine("--------------- ");
+            Console.WriteLine("Make Your Choice : \n" + listPlayer[choiceAdd].ToString());
+            return listPlayer[choiceAdd];
+        }
         public override string ToString()
         {
-            string result = ""; 
+            string result = "";
 
             if (!string.IsNullOrEmpty(_fullName))
                 result += "Full Name : " + _fullName;
@@ -45,7 +83,7 @@ namespace manage_employees
                 result += " - Squad Number : " + _squadNumber;
 
             if (!string.IsNullOrEmpty(_position))
-                result += " - Position : " + _position;
+                result += " - Position : " + _position.ToUpper();
 
             if (_team != null && !string.IsNullOrEmpty(_team.TeamName))
                 result += " - 'Team' : " + _team.TeamName;
