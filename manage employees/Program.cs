@@ -80,7 +80,7 @@ namespace manage_employees
                     remove.RemovePlayerForTeam(listPlayer, listTeam);
                     break;
                 default:
-                    Console.WriteLine("exit application.....");
+                    Console.WriteLine("exit application....");
                     break;
             }
         }
