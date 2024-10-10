@@ -14,10 +14,12 @@ namespace manage_employees
         private string _ground;
         private HashSet<Player> _listOfPlayer;
 
-        public Team() 
-        {
-            _listOfPlayer = new HashSet<Player>(); 
-        }
+        public string TeamId { get => _teamId; set => _teamId = value; }
+        public string TeamName { get => _teamName; set => _teamName = value; }
+        public string Ground { get => _ground; set => _ground = value; }
+        internal HashSet<Player> ListOfPlayer { get => _listOfPlayer; set => _listOfPlayer = value; }
+
+        public Team() { _listOfPlayer = new HashSet<Player>(); }
 
         public Team(string teamId, string teamName, string ground)
         {
@@ -27,12 +29,7 @@ namespace manage_employees
             _listOfPlayer = new HashSet<Player>();
         }
 
-        public string TeamId { get => _teamId; set => _teamId = value; }
-        public string TeamName { get => _teamName; set => _teamName = value; }
-        public string Ground { get => _ground; set => _ground = value; }
-        internal HashSet<Player> ListOfPlayer { get => _listOfPlayer; set => _listOfPlayer = value; }
-
-        public void EnterInforTeam()
+        public Team EnterInforTeam()
         {
             Console.Write("enter team id : ");
             _teamId = Console.ReadLine();
@@ -42,19 +39,8 @@ namespace manage_employees
 
             Console.Write("enter ground : ");
             _ground = Console.ReadLine();
-        }
-        public static Team GetTeam(List<Team> listTeam)
-        {
-            ListItems.PrintList(listTeam);
-            Console.Write("Team Index : ");
-            string inputAdd = Console.ReadLine();
-            if (ValidInput.IsNumberChoice(inputAdd, listTeam) == -1)
-            {
-                Console.WriteLine("* incorrect input *");
-                return null;
-            }
 
-            return listTeam[Int32.Parse(inputAdd)];
+            return this;
         }
         public override string ToString()
         {

@@ -15,7 +15,6 @@ namespace manage_employees
     {
         static void Main(string[] args)
         {
-            //GK,CB,WB,CM,CF
             List<Team> listTeam = new List<Team>();
             List<Player> listPlayer = new List<Player>();
             bool flag = false;
@@ -30,16 +29,8 @@ namespace manage_employees
             listTeam.Add(new Team("1A", "Rabbit", "DN"));
 
 
-
-            Console.WriteLine("1. Create Player");
-            Console.WriteLine("2. Create Team");
-            Console.WriteLine("3. Add Player For Team");
-            Console.WriteLine("4. Remove Player For Team");
-            Console.WriteLine("0. Exit");
-            Console.WriteLine("--------------");
-            Console.Write("Choice Option: ");
-            int choiceNumber = Int32.Parse(Console.ReadLine());
-            Console.WriteLine("--------------");
+            PrintMenu();
+            int choiceNumber = Choice();
             while (choiceNumber != 0)
             {
                 if (flag)
@@ -54,9 +45,6 @@ namespace manage_employees
             }
 
 
-
-
-
             Console.ReadKey();
         }
         public static void ChoiceOfUser(List<Team> listTeam, List<Player> listPlayer, int choiceNumber)
@@ -65,43 +53,45 @@ namespace manage_employees
             {
                 case 1:
                     //Create Player;
-                    listPlayer.Add(CreatePlayer());
+                    listPlayer.Add(new Player().EnterInforPlayer());
                     break;
                 case 2:
                     // create team
-                    listTeam.Add(CreateTeam());
+                    listTeam.Add(new Team().EnterInforTeam());
                     break;
                 case 3:
-                    AddPlayer add = new AddPlayer();
-                    add.AddPlayerForTeam(listPlayer, listTeam);
+                    AddPlayer.AddPlayerForTeam(listPlayer, listTeam);
                     break;
                 case 4:
-                    RemovePlayer remove = new RemovePlayer();
-                    remove.RemovePlayerForTeam(listPlayer, listTeam);
+                    RemovePlayer.RemovePlayerForTeam(listPlayer, listTeam);
+                    break;
+                case 5:
+                    ListItems.PrintList(listPlayer);
+                    ListItems.PrintList(listTeam);
                     break;
                 default:
-                    Console.WriteLine("exit application.....");
+                    Console.WriteLine("exit application....");
                     break;
             }
         }
-
         
-        
-        public static Player CreatePlayer()
+        private static void PrintMenu()
         {
-            Player player = new Player();
-            player.EnterInforPlayer();
-            return player;
+            Console.WriteLine("1. Create Player");
+            Console.WriteLine("2. Create Team");
+            Console.WriteLine("3. Add Player For Team");
+            Console.WriteLine("4. Remove Player For Team");
+            Console.WriteLine("5. Print all");
+            Console.WriteLine("0. Exit");
+            Console.WriteLine("--------------");
+            Console.Write("Choice Option: ");
         }
-        public static Team CreateTeam()
+        private static int Choice()
         {
-            Team team = new Team();
-            team.EnterInforTeam();
-            return team;
+            int choiceNumber = Int32.Parse(Console.ReadLine());
+            Console.WriteLine("--------------");
+            return choiceNumber;
         }
-        
-        
-
 
 
 
