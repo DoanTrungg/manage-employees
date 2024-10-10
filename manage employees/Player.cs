@@ -21,7 +21,7 @@ namespace manage_employees
         public int SquadNumber { get => _squadNumber; set => _squadNumber = value; }
         public string Position { get => _position; set => _position = value; }
         internal Team Team { get => _team; set => _team = value; }
-        public Player() { _team = new Team();  }
+   
         public Player(string fullName, string dateOfBirth, int squadNumber, string position)
         {
             FullName = fullName;
@@ -31,8 +31,9 @@ namespace manage_employees
             _team = new Team();
         }
 
-        
-        public void EnterInforPlayer()
+        public Player() { _team = new Team(); }
+
+        public Player EnterInforPlayer()
         {
             Console.Write("enter full name : ");
             string inputName = Console.ReadLine();
@@ -53,22 +54,10 @@ namespace manage_employees
             string inputPosition = Console.ReadLine();
             bool isPosition = ValidInput.ValidPosition(inputPosition);
             if(isPosition) _position = inputPosition;
+
+            return this;
         }
-        public static Player GetPlayer(List<Player> listPlayer)
-        {
-            ListItems.PrintList(listPlayer);
-            Console.Write("Player Index : ");
-            string inputAdd = Console.ReadLine();
-            if (ValidInput.IsNumberChoice(inputAdd, listPlayer) == -1)
-            {
-                Console.WriteLine("* incorrect input *");
-                return null;
-            }
-            int choiceAdd = Int32.Parse(inputAdd);
-            Console.WriteLine("--------------- ");
-            Console.WriteLine("Make Your Choice : \n" + listPlayer[choiceAdd].ToString());
-            return listPlayer[choiceAdd];
-        }
+        
         public override string ToString()
         {
             string result = "";
