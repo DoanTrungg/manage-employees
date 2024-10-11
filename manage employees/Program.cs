@@ -70,7 +70,7 @@ namespace manage_employees
                     ListItems.PrintList(listTeam);
                     break;
                 default:
-                    Console.WriteLine("exit application....");
+                    Console.WriteLine("exit application.....");
                     break;
             }
         }
